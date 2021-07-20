@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Lissa | Compra </title>
+    <!-- Link de css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/main.css') }}">
+    <!-- Link de font-google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <header class="hed">
+        <nav class="navbar">
+            <a class="navbar-brand" href="{{url_for('index')}}">Tienda Lissa</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('index')}}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('venta')}}">Venta</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('compra')}}">Compra</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Fiado</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="wrapper">
+
+            <div class="form">
+
+                <h1>Formulario de compra</h1>
+                <form action="{{url_for('compra')}}">
+                    <div class="cont-1">
+
+                        <div class="wrap-form">
+                            <label class="label-inp" for="name">Nombre: </label>
+                            <input class= "inp-style" type="name" name="name" id="name">
+                        </div>
+
+                        <div class="wrap-form">
+                            <label class="label-inp" for="date">Fecha: </label>
+                            <input class= "inp-style" type="date" name="date" id="date">
+                        </div>
+                    </div>
+
+                    <div class="cont-2">
+
+                        <div class="wrap-form">
+
+                            <label class="label-inp" for="count">Cantidad: </label>
+                            <input class= "inp-style" type="number" name="count" id="count">
+                        </div>
+                        <div class="wrap-form">
+                            <label class="label-inp" for="description">Descripción de producto: </label>
+                            <input class= "inp-style" type="name" name="description" id="description">
+                        </div>
+                            
+                        <div class="wrap-form">
+                            <label class="label-inp" for="price">Precio: </label>
+                            <input class= "inp-style" type="number" name="count" id="price">
+                        </div>
+                    </div>
+                    <div class="cont-2">
+
+                        <div class="wrap-form">
+
+                            <label class="label-inp" for="count">Cantidad: </label>
+                            <input class= "inp-style" type="number" name="count" id="count">
+                        </div>
+                        <div class="wrap-form">
+                            <label class="label-inp" for="description">Descripción de producto: </label>
+                            <input class= "inp-style" type="name" name="description" id="description">
+                        </div>
+                            
+                        <div class="wrap-form">
+                            <label class="label-inp" for="price">Precio: </label>
+                            <input class= "inp-style" type="number" name="count" id="price">
+                        </div>
+                    </div>
+                    <div class="cont-2">
+
+                        <div class="wrap-form">
+
+                            <label class="label-inp" for="count">Cantidad: </label>
+                            <input class= "inp-style" type="number" name="count" id="count">
+                        </div>
+                        <div class="wrap-form">
+                            <label class="label-inp" for="description">Descripción de producto: </label>
+                            <input class= "inp-style" type="name" name="description" id="description">
+                        </div>
+                            
+                        <div class="wrap-form">
+                            <label class="label-inp" for="price">Precio: </label>
+                            <input class= "inp-style" type="number" name="count" id="price">
+                        </div>
+                    </div>
+                    <div class="cont-2">
+
+                        <div class="wrap-form">
+
+                            <label class="label-inp" for="count">Cantidad: </label>
+                            <input class= "inp-style" type="number" name="count" id="count">
+                        </div>
+                        <div class="wrap-form">
+                            <label class="label-inp" for="description">Descripción de producto: </label>
+                            <input class= "inp-style" type="name" name="description" id="description">
+                        </div>
+                            
+                        <div class="wrap-form">
+                            <label class="label-inp" for="price">Precio: </label>
+                            <input class= "inp-style" type="number" name="count" id="price">
+                        </div>
+                    </div>
+                    <div class="cont-2">
+
+                        <div class="wrap-form">
+
+                            <label class="label-inp" for="count">Cantidad: </label>
+                            <input class= "inp-style" type="number" name="count" id="count">
+                        </div>
+                        <div class="wrap-form">
+                            <label class="label-inp" for="description">Descripción de producto: </label>
+                            <input class= "inp-style" type="name" name="description" id="description">
+                        </div>
+                            
+                        <div class="wrap-form">
+                            <label class="label-inp" for="price">Precio: </label>
+                            <input class= "inp-style" type="number" name="count" id="price">
+                        </div>
+                    </div>
+                    <div class="cont-2">
+
+                        <div class="wrap-form">
+
+                            <label class="label-inp" for="count">Cantidad: </label>
+                            <input class= "inp-style" type="number" name="count" id="count">
+                        </div>
+                        <div class="wrap-form">
+                            <label class="label-inp" for="description">Descripción de producto: </label>
+                            <input class= "inp-style" type="name" name="description" id="description">
+                        </div>
+                            
+                        <div class="wrap-form">
+                            <label class="label-inp" for="price">Precio: </label>
+                            <input class= "inp-style" type="number" name="count" id="price">
+                        </div>
+                    </div>
+                    <div class="cont-2">
+
+                        <div class="wrap-form">
+
+                            <label class="label-inp" for="count">Cantidad: </label>
+                            <input class= "inp-style" type="number" name="count" id="count">
+                        </div>
+                        <div class="wrap-form">
+                            <label class="label-inp" for="description">Descripción de producto: </label>
+                            <input class= "inp-style" type="name" name="description" id="description">
+                        </div>
+                            
+                        <div class="wrap-form">
+                            <label class="label-inp" for="price">Precio: </label>
+                            <input class= "inp-style" type="number" name="count" id="price">
+                        </div>
+                    </div>
+                    <div class="cont-2">
+
+                        <div class="wrap-form">
+
+                            <label class="label-inp" for="count">Cantidad: </label>
+                            <input class= "inp-style" type="number" name="count" id="count">
+                        </div>
+                        <div class="wrap-form">
+                            <label class="label-inp" for="description">Descripción de producto: </label>
+                            <input class= "inp-style" type="name" name="description" id="description">
+                        </div>
+                            
+                        <div class="wrap-form">
+                            <label class="label-inp" for="price">Precio: </label>
+                            <input class= "inp-style" type="number" name="count" id="price">
+                        </div>
+                    </div>
+                    <input type="submit" value="Enviar" class="env">
+                </form>
+            </div>
+        </div>
+    </main>
+<!-- Link de js -->
+<script src="{{ url_for('static', filename='src/main.js') }}"></script>
+</body>
+</html>
