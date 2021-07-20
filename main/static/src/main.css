@@ -1,0 +1,194 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Open Sans', sans-serif;
+}
+
+:root{
+    --bordo: rgba(144, 12, 63, 0.2);
+    --blanco: #ffffff;
+}
+
+
+
+/** Header **/
+.hed{
+
+    width: 100%;
+    height: 10%;
+
+    background-color: var(--bordo);
+}
+
+.navbar{
+
+    margin: auto;
+    text-align: center;
+    color: var(--blanco);
+}
+
+.navbar-brand{
+
+    display: block;
+    margin: auto;
+    padding: 0.5em;
+
+    color: var(-);
+    font-size: 2em;
+}
+
+.navbar a{
+
+	text-decoration: none;
+    color: var(--blanco);
+}
+
+.navbar ul{
+
+    display: flex;
+	list-style: none;
+    justify-content: space-between;
+
+}
+
+.navbar ul li{
+
+    width: 100%;
+    height: 100%;
+}
+.nav-link{
+
+    display: block;
+    padding: 1em;
+    font-size: 1em;
+
+    border-top: 1px solid var(--blanco);
+}
+
+.nav-link:hover{
+
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+
+/** Body **/
+
+body{
+
+    background: #ad5389;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    color: var(--blanco);
+}
+
+.wrapper{
+
+    width: 80%;
+    margin: auto;
+    padding: 2em;
+}
+
+.form h1{
+
+    text-align: center;
+}
+
+.search{
+
+    display: flex;
+}
+
+.search img{
+
+    width: 50px;
+    height: 50px;
+
+    padding-right: 10px;
+}
+
+.cont-1{
+
+    margin: auto;
+    padding-bottom: 2em;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.cont-2{
+    
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrap-form{
+
+    width: 100%;
+    display: grid;
+    text-align: center;
+}
+
+.label-inp{
+
+    font-size: 1.1em;
+    padding: 0.2em;
+
+}
+
+.inp-style{
+
+    width: 100%;
+    height: 3em;
+
+    font-size: 1em;
+    text-align: center;
+
+    outline: none;
+}
+
+.env{
+
+    display: block;
+    width: 100%;
+    height: 3.7em;
+    margin-top: 1em;
+
+    font-size: 1em;
+    border-radius: 6px;
+    border: none;
+
+    color: var(--blanco);
+    background-color: rgba(144, 12, 63, 0.8);
+}
+
+.env:hover{
+
+    cursor: pointer;
+    background-color: rgba(144, 12, 63, 0.4);
+}
+
+/* Estilos del index*/
+
+.records{
+
+    width: 100%;
+    margin-top: 1em;
+}
+
+.records table{
+
+    margin: auto;
+}
+
+.row{
+
+    border: 1px solid;
+    padding: 1em;
+    text-align: center;
+}
