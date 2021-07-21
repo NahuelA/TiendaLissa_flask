@@ -1,13 +1,95 @@
-- 14/07/21: 
-    - Se creó la base de datos de ventas
-    - Se creó el archivo tienda_lissa_compra.py
-    - Se creó el archivo tienda_lissa_venta.py
-    - Se creó el archivo app.py
-    - Se agregaron cambios en tienda_lissa_compra.py & tienda_lissa_venta.py
-    - Se creó el archivo Diagrama_tienda_lissa_db.drawio
-    - Se creó el archivo flow.txt
-    - Se creó el archivo config.ini & config.py
-    - Se crearon 3 templates y los archivos main.css & main.js
-- 15/07/21:    
-    - Se terminó el diseño del sitio Tienda Lissa
-    - Plantillas terminadas: venta.html & compra.html & index.html
+# Tienda Lissa DB
+
+**Proyecto para aprobar conocimientos brindados por inoveARG**
+![inove_logo](https://inove.com.ar/wp-content/uploads/2020/03/cropped-3-1.png)
+
+Sitio web para administrar las compras y ventas de una tienda de ropa y calzados.
+El propósito de este proyecto es Digitalizar los controles diarios de compra/venta de la tienda
+
+## Características:
+
+- Facturero de compra/venta
+- Buscador de registros mediante el nombre
+- Gráfico que muestra un balance entre compra/venta
+- Reset de db
+
+## Pre-requisitos:
+
+- Tener instalado **Python 3.8.3**
+- Tener instalado **Flask**
+- Tener instalado **numpy**
+
+## Esquema del proyecto:
+
+- db
+    - schema.sql
+    - tienda_lissa.db
+- main
+    - static
+        - media
+            - search-solid.svg
+        - src
+            - main.css
+            - main.js
+    - templates
+        - compra.html
+        - fiado.html
+        - index.html
+        - venta.html
+    app.py
+    config.ini
+    config.py
+    tienda_lissa_compra.py
+    tienda_lissa_venta.py
+
+## Herramientas que se usaron:
+
+- **Python 3.8.3**
+- **Flask 2.0.1**
+- **ORM sqlalchemy**
+- **HTML y CSS**
+
+## Guía de uso:
+
+El sitio consta de 5 endpoints
+
+- (1) inicio
+- (2) venta
+- (3) compra
+- (4) fiado
+- (5) resumen diario<!-- Añadir buscador por fecha en el endpoint resumen -->
+- (6) reset
+
+## Inicio
+
+En este endpoint podemos buscar por nombre a los registros de la db
+
+**El registro impreso cuenta con 7 columnas**
+- Fecha
+- ID
+- Nombre
+- Cantidad
+- Descripción
+- Precio unitario
+- Precio total
+__La columna fecha, id y total se generan dinámicamente__
+
+__Palabras clave para las busquedas__
+- /all: Muestra todos los registros de la db
+- name: Ingresar nombre de alguna persona registrada
+<!-- Mostrar imagen de la interfaz de inicio -->
+
+## Venta
+
+Muestra un formulario para registrar hasta 8 ventas
+
+**Las entradas del formulario son las siguientes**
+- Nombre
+- Cantidad
+- Descripción
+- Precio unitario
+
+__Los nombres se guardan en lower_case y en el buscador de registros de inicio también se pasa el nombre ingresado a lower_case__
+<!-- Mostrar imagen de la interfaz de inicio -->
+
+## Compra
