@@ -13,6 +13,7 @@ __email__ = "nahuelarrascaeta22@gmail.com"
 __version__ = "1.0"
 
 #Librerías
+from datetime import datetime
 import numpy as np
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
@@ -26,6 +27,7 @@ class tienda_lissa_compra(db.Model):
     count = db.Column(db.Integer)
     description = db.Column(db.String)
     price = db.Column(db.Integer)
+    total = db.Column(db.Integer)
     # pay = db.Column(db.Integer)
 
 def create_schema():
@@ -36,9 +38,14 @@ def create_schema():
     # Crear las tablas
     db.create_all()
 
-def insert(date, name, count, descrption, price, total, pay):
+def insert(name, count, descrption, price):
     # Crear un nuevo registro de venta
-    record_venta = tienda_lissa_compra(date=date, name=name, count=count, descrption=descrption, price=price)
+
+    # Fecha actual de la creación del registro
+    date = datetime.now().date()
+    # el total equivale a la cantidad de prendas multiplicado por el precio
+    total = int(count) * int(price)
+    record_venta = tienda_lissa_compra(date=date, name=name, count=count, descrption=descrption, price=price, total=total)
 
     # Agregar la persona a la DB
     db.session.add(record_venta)
@@ -65,9 +72,6 @@ def resumen_persona(proveedor):
     json_list = []
     query_name = db.session.query(tienda_lissa_compra).filter(tienda_lissa_compra.name == proveedor)
     records_name = query_name.all()
-
-    if len(records_name) == 0:    
-        return "<h1> No se encontraron registros con dicho nombre </h1>"
     
     # De los registros de la persona mencionada, obtener los datos:
     for x in records_name:
