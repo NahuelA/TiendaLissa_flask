@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Lissa | Inicio </title>
+    <title>Tienda Lissa | Resumen diario </title>
     <!-- Link de css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='src/main.css') }}">
     <!-- Link de font-google -->
@@ -45,15 +45,17 @@
             <form action="{{url_for('index')}}" method="GET" class="form">
 
                 <div class="wrap-form">
-                    <label class="label-inp" for="person">Buscar registro</label>
+                    <label class="label-inp" for="person">Buscar por mes</label>
                     <div class="search">
                         <img src="{{ url_for('static', filename='media/search-solid.svg') }}" alt="search-solid" id="search-solid">
-                        <input class= "inp-style" type="text" name="person" id="person" placeholder="Ingrese el nombre del cliente que desea buscar" autocomplete="off">
+                        <input class= "inp-style" type="text" name="date" id="person" placeholder="Ingrese el mes que desea analizar" autocomplete="off">
                     </div> 
                 </div>
             </form>
             <!-- Imprimir en pantalla los registros de la persona ingresada -->
             <div class="records">
+                <div class="plot">
+                </div>
                 <table>
                     <tr>
                         <td class="row">Fecha</td>
