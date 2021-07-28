@@ -72,10 +72,34 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+/* desplegable */
+.desplegable{
+
+    width: 275px;
+    display: none;
+    position: absolute;
+}
+
+.desplegable li{
+    display: none;
+}
+
+.desplegable div{
+    width: inherit;
+    display: grid;
+    background-color: rgba(100, 10, 100,0.8);
+    border-radius: 10px;
+}
+
+#main-desp:hover li{
+
+    display: block;
+    background-color: var(--bordo);
+    border-radius: 10px;
+}
 
 
 /** Body **/
-
 body{
 
     background: #ad5389;  /* fallback for old browsers */
@@ -95,11 +119,6 @@ body{
 .form h1{
 
     text-align: center;
-}
-
-.search{
-
-    display: flex;
 }
 
 .search img{
@@ -173,8 +192,8 @@ body{
     background-color: rgba(144, 12, 63, 0.4);
 }
 
-/* Estilos del index*/
 
+/* Index template */
 .records{
 
     width: 100%;
@@ -191,4 +210,26 @@ body{
     border: 1px solid;
     padding: 1em;
     text-align: center;
+}
+
+.cont-search{
+    display: flex;
+}
+
+.search{
+    display: grid;
+}
+
+
+/* Resumen_diario template (arreglo)*/
+.search-r-d{
+
+    display: flex;
+}
+
+/* Limit y offset general */
+.limit_offset{
+    display: flex;
+    width: 50%;
+    margin: auto;
 }
