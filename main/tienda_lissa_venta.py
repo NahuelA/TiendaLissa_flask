@@ -13,7 +13,8 @@ __email__ = "nahuelarrascaeta22@gmail.com"
 __version__ = "1.0"
 
 #Librerías
-from datetime import datetime
+from datetime import date, datetime
+from re import MULTILINE
 import numpy as np
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
@@ -52,10 +53,6 @@ def insert(name:str, count, description:str, price):
     db.session.add(record_venta)
     db.session.commit()
 
-# Obtener el limit y offset del HTTP POST
-def limit_offset(limit, offset):
-    pass
-
 # Obtener el total de precios
 def get_total():
 
@@ -67,25 +64,26 @@ def get_total():
     total = np.sum(get_total_price)
     return total
 
-# Obtener los registros de la persona indicada e imprimirlo en pantalla
-def resumen_persona(name:str):
+# Obtener las ventas realizadas
+def resumen_persona(name:str,limit, offset):
 
     json_list = []
     query_name = db.session.query(tienda_lissa_venta).filter(tienda_lissa_venta.name == name)
-    #records_name = query_name.all()
+    records_name = query_name.limit(limit).offset(offset).all()
 
     # De los registros de la persona mencionada, obtener los datos:
-    for x in query_name:
+    for x in records_name:
         record_dict = {"id":x.id,"date":x.date, "name":x.name, "count":x.count, "description":x.description, "price":x.price, "total":x.total}
         json_list.append(record_dict)
 
     return json_list
 
 # Obtener todos los registros
-def db_all():
+def db_all(limit:int, offset:int):
 
     query = db.session.query(tienda_lissa_venta)
-    query = query.all()
+    query = query.limit(limit).offset(offset).all()
+
     json_list = []
     # Obtener todos los registros y guardarlos en una lista:
     for x in query:
@@ -95,18 +93,16 @@ def db_all():
     return json_list
 
 # Obtener registros del mes indicado
-def db_month(month):
+def db_month(month:str):
 
-    year = datetime.year
-    day = datetime.day
-    date = datetime(year=year, month=int(month), day=day, hour=0, minute=0, second=0,microsecond=0).now()
-
-    query = db.session.query(tienda_lissa_venta).filter(tienda_lissa_venta.date == date)
+    query = db.session.query(tienda_lissa_venta)
     dates = query.all()
 
     json_list = []
     for x in dates:
         
-        dict_ = {"date":x.date,"id":x.id,"name":x.name,"count":x.count,"description":x.description,"price":x.price,"total":x.total}
-        json_list.append(dict_)
+        # Acá indico si el mes ingresado(month) es igual al mes de la fecha obtenida
+        if str(x.date)[5:7] == month:
+            dict_ = {"date":x.date,"id":x.id,"name":x.name,"count":x.count,"description":x.description,"price":x.price,"total":x.total}
+            json_list.append(dict_)
     return json_list

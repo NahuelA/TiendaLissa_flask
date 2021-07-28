@@ -18,15 +18,12 @@ __version__ = "1.0"
 #Librerías
 import traceback
 import io
-#import sys
 import os
-#from datetime import datetime
-#from datetime import datetime, timedelta
 #Matplotlib para realizar un balance general de ventas y compras
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 #Flask
-from flask import Flask, request, jsonify, render_template, Response, make_response, redirect, url_for
-# import requests
+from flask import Flask, request, jsonify, render_template, Response, redirect, url_for
 # Archivos míos
 import tienda_lissa_venta
 import tienda_lissa_compra
@@ -52,6 +49,18 @@ app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///../db/{db_config['database']
 tienda_lissa_venta.db.init_app(app)
 tienda_lissa_compra.db.init_app(app)
 
+
+# FUNCIONES PARA EL PROGRAMA
+# Transformar figura a imagen
+def plot_to_canvas(fig):
+    # Convertir ese grafico en una imagen para enviar por HTTP
+    # y mostrar en el HTML
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return output
+# Realizado
+
+
 @app.route("/")
 def ini():
     try:
@@ -63,13 +72,14 @@ def ini():
         # Obtengo el nombre que se ingresa en el input del index
         # Transformo en lower para evitar problemas de búsqueda
         # También se guardan los nombres en lower en la db.
-        #name = request.form.get("person").lower()
-        #records = tienda_lissa_venta.resumen_persona(name)
         return redirect(url_for('index'))
     except:
         return jsonify({'trace': traceback.format_exc()})
+# Realizado
+
 
 # Nota: El endpoint tiene que ser el mismo nombre que la función decorada
+# INDEX
 @app.route("/index")
 def index():
     try:
@@ -78,25 +88,29 @@ def index():
         # Transformo en lower para evitar problemas de búsqueda
         # También se guardan los nombres en lower en la db.
         name = str(request.args.get("person")).lower()
+        limit = request.args.get("limit")
+        offset = request.args.get("offset")
+        
         if name == None:
             return render_template("index.html")
         elif name == "/all":
-            records = tienda_lissa_venta.db_all()
+            records = tienda_lissa_venta.db_all(limit, offset)
             return render_template("index.html", records=records)
         else:
-            records = tienda_lissa_venta.resumen_persona(name)
+            records = tienda_lissa_venta.resumen_persona(name, limit, offset)
             return render_template("index.html", records=records)
     except:
         return jsonify({'trace': traceback.format_exc()})
 # Realizado
 
 
+# VENTA
 @app.route("/venta", methods=["GET","POST"])
 def venta():
 
     if request.method == "GET":
         try:
-            return render_template("venta.html")
+            return render_template("venta/venta.html")
         except:
             return jsonify({'trace': traceback.format_exc()})
 
@@ -116,18 +130,43 @@ def venta():
                 if name != None and name.isdigit() == False:
                     if (count.isdigit() == True) and (description != None) and (price.isdigit() == True):
                         tienda_lissa_venta.insert(name,count,description,price)
-            return render_template("venta.html")
+            return render_template("venta/venta.html")
         except:
             return jsonify({'trace': traceback.format_exc()})
 # Realizado
 
 
+# BUSCAR VENTA POR MES
+@app.route("/buscar_venta_por_mes", methods=["GET","POST"])
+def buscar_venta_por_mes():
+
+    if request.method == "GET":
+        try:
+            return render_template("venta/buscar_venta_por_mes.html")
+        except:
+            return jsonify({'trace': traceback.format_exc()})
+
+    if request.method == "POST":
+        try:
+            month = str(request.form.get("date"))
+            # Validación
+            if month.isdigit() == False:
+                return render_template("venta/buscar_venta_por_mes.html")
+            elif month.isdigit() == True:
+                records = tienda_lissa_venta.db_month(month)
+                return render_template("venta/buscar_venta_por_mes.html",records=records)
+        except:
+            return jsonify({'trace': traceback.format_exc()})
+# Realizado
+
+
+# COMPRA
 @app.route("/compra", methods=["GET","POST"])
 def compra():
 
     if request.method == "GET":
         try:
-            return render_template("venta.html")
+            return render_template("compra/compra.html")
         except:
             return jsonify({'trace': traceback.format_exc()})
 
@@ -146,46 +185,89 @@ def compra():
                 if name != None and name.isdigit() == False:
                     if (count.isdigit() == True) and (description != None) and (price.isdigit() == True):
                         tienda_lissa_compra.insert(name,count,description,price)            
-            return render_template("venta.html")
+            return render_template("compra/compra.html")
         except:
             return jsonify({'trace': traceback.format_exc()})
-# En observación: tal vez cambie algunas cosas del formulario de compras para que sea diferente al de ventas
-# Realizado por el momento...
+# Realizado
 
 
-@app.route("/resumen_diario", methods=["GET","POST"])
-def resumen_diario():
+# BUSCAR COMPRA POR MES
+@app.route("/buscar_compra_por_mes", methods=["GET","POST"])
+def buscar_compra_por_mes():
 
     if request.method == "GET":
         try:
-            return render_template("resumen_diario.html")
+            return render_template("compra/buscar_compra_por_mes.html")
         except:
             return jsonify({'trace': traceback.format_exc()})
-    
+
     if request.method == "POST":
         try:
-            month = str(request.form.get("month"))
+            month = str(request.form.get("date"))
+            # Validación
             if month.isdigit() == False:
-                return render_template("resumen_diario.html")
+                return render_template("compra/buscar_compra_por_mes.html")
             elif month.isdigit() == True:
-                records = tienda_lissa_venta.db_month(month)
-                return render_template("resumen_diario.html",records=records)
+                records = tienda_lissa_compra.db_month(month)
+                return render_template("compra/buscar_compra_por_mes.html",records=records)
         except:
             return jsonify({'trace': traceback.format_exc()})
-# No terminado:
-# Falta: 
-#       - Agregar el input del mes
-#       - Verificar si el jinja templates funciona tal cual como está
-#       - Verificar si hacen falta algunas validaciones más
+# Realizado
 
 
+# BUSCAR COMPRA POR PROVEEDOR
+@app.route("/buscar_por_proveedor")
+def buscar_por_proveedor():
+    try:
+
+        # Obtengo el nombre que se ingresa en el input del template
+        # Transformo en lower para evitar problemas de búsqueda
+        # También se guardan los nombres en lower en la db.
+        proveedor = str(request.args.get("proveedor")).lower()
+        limit = request.args.get("limit")
+        offset = request.args.get("offset")
+        
+        if proveedor == None:
+            return render_template("compra/buscar_por_proveedor.html")
+        elif proveedor == "/all":
+            records = tienda_lissa_compra.db_all(limit, offset)
+            return render_template("compra/buscar_por_proveedor.html", records=records)
+        else:
+            records = tienda_lissa_compra.resumen_persona(proveedor, limit, offset)
+            return render_template("compra/buscar_por_proveedor.html", records=records)
+    except:
+        return jsonify({'trace': traceback.format_exc()})
+# Realizado
+
+
+# RESUMEN
+@app.route("/resumen")
+def resumen():
+    try:
+        venta  = tienda_lissa_venta.get_total()
+        compra = tienda_lissa_compra.get_total()
+        # La figura muestra una suba si la compra de mercadería está acorde con las ventas
+        # Si baja es porque se compra más de lo que se vende
+        fig,ax = plt.subplots()
+        ax.plot(compra, venta, label = "Compra = Costo | Venta = Costo + Ganancia")
+        plt.legend()
+        # Retorna el valor de la figura en bytes
+        output = plot_to_canvas(fig)
+        plt.close(fig)# Cerramos la img para que no consuma memoria
+        return Response(output.getvalue(),mimetype='image/png')
+    except:
+        return jsonify({'trace': traceback.format_exc()})
+# Realizado
+
+
+# RESET
 @app.route("/reset")
 def reset():
     try:
         # Borra la db y la vuelve a crear en la misma ubicación 
         # app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///../db/{db_config['database']}"
         if os.path.isfile(db_config['database']) == True:
-            # Borrar y crear la base de datos
+            # Borrar y crear base de datos
             tienda_lissa_venta.create_schema()
             tienda_lissa_compra.create_schema()
         result = "<h3>Base de datos re-generada!</h3>"
@@ -196,8 +278,6 @@ def reset():
 # Nota: Más adelante se puede crear un template para el endpoint /reset
 
 if __name__ == "__main__":
-    print("Servidor funcionando!")
-
     app.run(host=server_config['host'],
             port=server_config['port'],
             debug=False)
