@@ -32,10 +32,15 @@ El propósito de este proyecto es Digitalizar los controles diarios de compra/ve
             - main.css
             - main.js
     - templates
-        - compra.html
+        - compra
+            - compra.html
+            - buscar_compra_por_mes
+            - buscar_por_proveedor
+        - venta
+            - venta.html
+            - buscar_venta_por_mes
         - fiado.html
         - index.html
-        - venta.html
     app.py
     config.ini
     config.py
@@ -51,18 +56,21 @@ El propósito de este proyecto es Digitalizar los controles diarios de compra/ve
 
 ## Guía de uso:
 
-El sitio consta de 5 endpoints
+El sitio consta de 9 endpoints
 
 - (1) inicio
 - (2) venta
-- (3) compra
-- (4) fiado
-- (5) resumen diario<!-- Añadir buscador por fecha en el endpoint resumen -->
-- (6) reset
+    - (3) buscar por mes
+- (4) compra
+    - (5) buscar por mes
+    - (6) buscar por proveedor
+- (7) fiado
+- (8) resumen
+- (9) reset
 
 ## Inicio
 
-En este endpoint podemos buscar por nombre a los registros de la db
+En este endpoint podemos buscar por nombre a los registros de venta de la db
 
 **El registro impreso cuenta con 7 columnas**
 - Fecha
