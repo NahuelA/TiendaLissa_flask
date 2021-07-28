@@ -23,17 +23,28 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('index')}}">Inicio</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="main-desp">
                     <a class="nav-link" href="{{url_for('venta')}}">Venta</a>
+                    <ul class="desplegable">
+                        <div>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('buscar_venta_por_mes')}}">Buscar por mes</a></li>
+                        </div>
+                    </ul>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="main-desp">
                     <a class="nav-link" href="{{url_for('compra')}}">Compra</a>
+                    <ul class="desplegable">
+                        <div>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('buscar_por_proveedor')}}">Buscar por proveedor</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('buscar_compra_por_mes')}}">Buscar por mes</a></li>
+                        </div>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Fiado</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('resumen_diario')}}">Resumen diario</a>
+                    <a class="nav-link" href="{{url_for('resumen')}}">Resumen</a>
                 </li>
             </ul>
         </nav>
@@ -45,10 +56,16 @@
             <form action="{{url_for('index')}}" method="GET" class="form">
 
                 <div class="wrap-form">
-                    <label class="label-inp" for="person">Buscar registro</label>
+                    <label class="label-inp" for="person">Buscar venta</label>
                     <div class="search">
-                        <img src="{{ url_for('static', filename='media/search-solid.svg') }}" alt="search-solid" id="search-solid">
-                        <input class= "inp-style" type="text" name="person" id="person" placeholder="Ingrese el nombre del cliente que desea buscar" autocomplete="off">
+                        <div class="cont-search">
+                            <img src="{{ url_for('static', filename='media/search-solid.svg') }}" alt="search-solid" id="search-solid">
+                            <input class= "inp-style" type="text" name="person" id="person" placeholder="Ingrese el nombre del cliente que desea buscar" autocomplete="off">
+                        </div>
+                        <!-- <div class="limit_offset">
+                            <input type="number" name="limit" class="inp-style" placeholder="Limit">
+                            <input type="number" name="offset" class="inp-style" placeholder="Offset">
+                        </div> -->
                     </div> 
                 </div>
             </form>

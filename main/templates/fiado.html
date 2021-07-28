@@ -21,17 +21,28 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('index')}}">Inicio</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="main-desp">
                     <a class="nav-link" href="{{url_for('venta')}}">Venta</a>
+                    <ul class="desplegable">
+                        <div>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('buscar_venta_por_mes')}}">Buscar por mes</a></li>
+                        </div>
+                    </ul>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="main-desp">
                     <a class="nav-link" href="{{url_for('compra')}}">Compra</a>
+                    <ul class="desplegable">
+                        <div>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('buscar_por_proveedor')}}">Buscar por proveedor</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('buscar_compra_por_mes')}}">Buscar por mes</a></li>
+                        </div>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Fiado</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('resumen_diario')}}">Resumen diario</a>
+                    <a class="nav-link" href="{{url_for('resumen')}}">Resumen</a>
                 </li>
             </ul>
         </nav>
