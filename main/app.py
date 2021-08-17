@@ -16,14 +16,16 @@ __email__ = "nahuelarrascaeta22@gmail.com"
 __version__ = "1.0"
 
 #Librerías
+from datetime import datetime
 import traceback
 import io
 import os
+from flask_sqlalchemy import _record_queries
 #Matplotlib para realizar un balance general de ventas y compras
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 #Flask
-from flask import Flask, request, jsonify, render_template, Response, redirect, url_for
+from flask import Flask, json, request, jsonify, render_template, Response, redirect, url_for
 # Archivos míos
 import tienda_lissa_venta
 import tienda_lissa_compra
@@ -65,10 +67,10 @@ def plot_to_canvas(fig):
 def ini():
     try:
 
-        if os.path.isfile(db_config['database']) == False:
+        """ if os.path.isfile(db_config['database']) == False:
             # Sino existe la base de datos la creo
             tienda_lissa_venta.create_schema()
-            tienda_lissa_compra.create_schema()
+            tienda_lissa_compra.create_schema() """
         # Obtengo el nombre que se ingresa en el input del index
         # Transformo en lower para evitar problemas de búsqueda
         # También se guardan los nombres en lower en la db.
@@ -91,7 +93,7 @@ def index():
         limit = request.args.get("limit")
         offset = request.args.get("offset")
         
-        if name == None:
+        if name == "" or name.isdigit():
             return render_template("index.html")
         elif name == "/all":
             records = tienda_lissa_venta.db_all(limit, offset)
@@ -103,8 +105,9 @@ def index():
         return jsonify({'trace': traceback.format_exc()})
 # Realizado
 
+""" ---------------------------------------------------------------- """
 
-# VENTA
+#                           VENTA
 @app.route("/venta", methods=["GET","POST"])
 def venta():
 
@@ -125,11 +128,14 @@ def venta():
                 count = request.form.get(f'count{row}')
                 description = str(request.form.get(f'description{row}'))
                 price = request.form.get(f'price{row}')
-                
+                pay = str(request.form.get(f'pay{row}'))
+
+                if pay == "":
+                    pay = "No debe"
                 # Validación de datos
-                if name != None and name.isdigit() == False:
-                    if (count.isdigit() == True) and (description != None) and (price.isdigit() == True):
-                        tienda_lissa_venta.insert(name,count,description,price)
+                if name != "" and name.isdigit() == False:
+                    if (count.isdigit() == True and count != None) and (description != "") and (price.isdigit() == True and price != None):                        
+                        tienda_lissa_venta.insert(name,count,description,price,pay)
             return render_template("venta/venta.html")
         except:
             return jsonify({'trace': traceback.format_exc()})
@@ -160,7 +166,20 @@ def buscar_venta_por_mes():
 # Realizado
 
 
-# COMPRA
+# RESUMEN DE VENTA DIARIO
+@app.route("/resumen_venta_diario")
+def resumen_venta_diario():
+
+    try:
+        records = tienda_lissa_venta.resumen_venta_diario()
+        date = datetime.now().date()
+        return render_template('venta/resumen_venta_diario.html', records=records, date=date)
+    except:
+        return jsonify({'trace': traceback.format_exc()})
+
+""" ---------------------------------------------------------------- """
+
+#                   COMPRA
 @app.route("/compra", methods=["GET","POST"])
 def compra():
 
@@ -182,8 +201,8 @@ def compra():
                 price = request.form.get(f'price{row}')
                 
                 # Validación de datos
-                if name != None and name.isdigit() == False:
-                    if (count.isdigit() == True) and (description != None) and (price.isdigit() == True):
+                if name != "" and name.isdigit() == False:
+                    if (count.isdigit() == True and count != None) and (description != None) and (price.isdigit() == True and price != None):
                         tienda_lissa_compra.insert(name,count,description,price)            
             return render_template("compra/compra.html")
         except:
@@ -239,8 +258,37 @@ def buscar_por_proveedor():
         return jsonify({'trace': traceback.format_exc()})
 # Realizado
 
+""" ---------------------------------------------------------------- """
 
-# RESUMEN
+#                              FIADO
+@app.route("/fiado", methods=["GET","POST"])
+def fiado():
+    if request.method == "GET":
+        try:
+            records = tienda_lissa_venta.get_fiados()
+            return render_template("fiado.html",records=records)
+        except:
+            return jsonify({'trace': traceback.format_exc()})
+    
+    if request.method == "POST":
+        try:
+            records = tienda_lissa_venta.get_fiados()
+            
+            for ids in records:
+                fiado_id = str(request.form.get(str(ids["id"])))
+
+                if fiado_id == "pagado":
+                    fiado_id = ids["id"]
+                    tienda_lissa_venta.paid(fiado_id, "pagado")
+            return render_template("fiado.html",records=records)
+        except:
+            return jsonify({"trace": traceback.format_exc()})
+
+# Realizado
+
+""" ---------------------------------------------------------------- """
+
+#                           RESUMEN
 @app.route("/resumen")
 def resumen():
     try:
@@ -266,10 +314,9 @@ def reset():
     try:
         # Borra la db y la vuelve a crear en la misma ubicación 
         # app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///../db/{db_config['database']}"
-        if os.path.isfile(db_config['database']) == True:
-            # Borrar y crear base de datos
-            tienda_lissa_venta.create_schema()
-            tienda_lissa_compra.create_schema()
+        # Borrar y crear base de datos
+        tienda_lissa_venta.create_schema()
+        tienda_lissa_compra.create_schema()
         result = "<h3>Base de datos re-generada!</h3>"
         return (result)
     except:
@@ -280,4 +327,4 @@ def reset():
 if __name__ == "__main__":
     app.run(host=server_config['host'],
             port=server_config['port'],
-            debug=False)
+            debug=True)
