@@ -28,6 +28,7 @@
                     <ul class="desplegable">
                         <div>
                             <li class="nav-item"><a class="nav-link" href="{{url_for('buscar_venta_por_mes')}}">Buscar por mes</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('resumen_venta_diario')}}">Resumen diario</a></li>
                         </div>
                     </ul>
                 </li>
@@ -41,7 +42,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Fiado</a>
+                    <a class="nav-link" href="{{url_for('fiado')}}">Fiado</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('resumen')}}">Resumen</a>
@@ -80,6 +81,7 @@
                         <td class="row">Descripción</td>
                         <td class="row">Precio</td>
                         <td class="row">Total</td>
+                        <td class="row">Fiado</td>
                     </tr>
                 {% for row in records %}
                     <tr>
@@ -90,6 +92,7 @@
                         <td class="row">{{ row['description'] }}</td>
                         <td class="row">{{ row['price'] }}</td>
                         <td class="row">{{ row['total'] }}</td>
+                        <td class="row">{{ row['fiado'] }}</td>
                     </tr>
                 {% endfor %}
                 </table>
@@ -98,5 +101,6 @@
     </main>
 <!-- Link de js -->
 <script src="{{ url_for('static', filename='src/main.js') }}"></script>
+
 </body>
 </html>
