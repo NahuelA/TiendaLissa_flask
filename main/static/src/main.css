@@ -153,6 +153,13 @@ body{
     text-align: center;
 }
 
+.price-pay{
+
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 80% 20%;
+}
+
 .label-inp{
 
     font-size: 1.1em;
@@ -232,4 +239,12 @@ body{
     display: flex;
     width: 50%;
     margin: auto;
+}
+
+/*  */
+
+.date_now{
+
+    text-align: center;
+    padding: 1em;
 }
