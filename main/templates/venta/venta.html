@@ -26,6 +26,7 @@
                     <ul class="desplegable">
                         <div>
                             <li class="nav-item"><a class="nav-link" href="{{url_for('buscar_venta_por_mes')}}">Buscar por mes</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('resumen_venta_diario')}}">Resumen diario</a></li>
                         </div>
                     </ul>
                 </li>
@@ -39,7 +40,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Fiado</a>
+                    <a class="nav-link" href="{{url_for('fiado')}}">Fiado</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('resumen')}}">Resumen</a>
@@ -66,141 +67,220 @@
                     <div class="cont-2">
 
                         <div class="wrap-form">
-
-                            <label class="label-inp"for="count">Cantidad: </label>
-                            <input class= "inp-style" type="number" min="0" max="1000" name="count0" id="count">
+                            <div>
+                                <label class="label-inp"for="count">Cantidad: </label>
+                                <input class= "inp-style" type="number" min="0" max="1000" name="count0" id="count">
+                            </div>
                         </div>
                         <div class="wrap-form">
-                            <label class="label-inp"for="description">Descripción de producto: </label>
-                            <input class= "inp-style" type="text" name="description0" id="description">
+                            <div>
+                                <label class="label-inp"for="description">Descripción de producto: </label>
+                                <input class= "inp-style" type="text" name="description0" id="description">
+                            </div>
                         </div>
                             
+                        <div class="wrap-form price-pay">
+                            <div>
+                                <label class="label-inp"for="price">Precio: </label>
+                                <input class= "inp-style" type="number" min="0" max="10000" name="price0" id="price">
+                            </div>
+                            <div>
+                                <label class="label-inp"for="pay">Fiado: </label>
+                                <input class= "inp-style" type="checkbox" name="pay0" id="pay-check0" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-2">
+
                         <div class="wrap-form">
-                            <label class="label-inp"for="price">Precio: </label>
-                            <input class= "inp-style" type="number" min="0" max="10000" name="price0" id="price">
+                            <div>
+                                <label class="label-inp"for="count">Cantidad: </label>
+                                <input class= "inp-style" type="number" min="0" max="1000" name="count1" id="count">
+                            </div>
+                        </div>
+                        <div class="wrap-form">
+                            <div>
+                                <label class="label-inp"for="description">Descripción de producto: </label>
+                                <input class= "inp-style" type="text" name="description1" id="description">
+                            </div>
+                        </div>
+                            
+                        <div class="wrap-form price-pay">
+                            <div>
+                                <label class="label-inp"for="price">Precio: </label>
+                                <input class= "inp-style" type="number" min="0" max="10000" name="price1" id="price">
+                            </div>
+                            <div>
+                                <label class="label-inp"for="pay">Fiado: </label>
+                                <input class= "inp-style" type="checkbox" name="pay1" id="pay-check1" value="">
+                            </div>
                         </div>
                     </div>
                     <div class="cont-2">
 
                         <div class="wrap-form">
 
-                            <label class="label-inp"for="count">Cantidad: </label>
-                            <input class= "inp-style" type="number" min="0" max="1000" name="count1" id="count">
+                            <div>
+                                <label class="label-inp"for="count">Cantidad: </label>
+                                <input class= "inp-style" type="number" min="0" max="1000" name="count2" id="count">
+                            </div>
                         </div>
                         <div class="wrap-form">
-                            <label class="label-inp"for="description">Descripción de producto: </label>
-                            <input class= "inp-style" type="text" name="description1" id="description">
+                            <div>
+                                <label class="label-inp"for="description">Descripción de producto: </label>
+                                <input class= "inp-style" type="text" name="description2" id="description">
+                            </div>
                         </div>
                             
-                        <div class="wrap-form">
-                            <label class="label-inp"for="price">Precio: </label>
-                            <input class= "inp-style" type="number" min="0" max="10000" name="price1" id="price">
+                        <div class="wrap-form price-pay">
+                            <div>
+                                <label class="label-inp"for="price">Precio: </label>
+                                <input class= "inp-style" type="number" min="0" max="10000" name="price2" id="price">
+                            </div>
+                            <div>
+                                <label class="label-inp"for="pay">Fiado: </label>
+                                <input class= "inp-style" type="checkbox" name="pay2" id="pay-check2" value="">
+                            </div>
                         </div>
                     </div>
                     <div class="cont-2">
 
                         <div class="wrap-form">
 
-                            <label class="label-inp"for="count">Cantidad: </label>
-                            <input class= "inp-style" type="number" min="0" max="1000" name="count2" id="count">
+                            <div>
+                                <label class="label-inp"for="count">Cantidad: </label>
+                                <input class= "inp-style" type="number" min="0" max="1000" name="count3" id="count">
+                            </div>
                         </div>
                         <div class="wrap-form">
-                            <label class="label-inp"for="description">Descripción de producto: </label>
-                            <input class= "inp-style" type="text" name="description2" id="description">
+                            <div>
+                                <label class="label-inp"for="description">Descripción de producto: </label>
+                                <input class= "inp-style" type="text" name="description3" id="description">
+                            </div>
                         </div>
                             
-                        <div class="wrap-form">
-                            <label class="label-inp"for="price">Precio: </label>
-                            <input class= "inp-style" type="number" min="0" max="10000" name="price2" id="price">
+                        <div class="wrap-form price-pay">
+                            <div>
+                                <label class="label-inp"for="price">Precio: </label>
+                                <input class= "inp-style" type="number" min="0" max="10000" name="price3" id="price">
+                            </div>
+                            <div>
+                                <label class="label-inp"for="pay">Fiado: </label>
+                                <input class= "inp-style" type="checkbox" name="pay3" id="pay-check3" value="">
+                            </div>
                         </div>
                     </div>
                     <div class="cont-2">
 
                         <div class="wrap-form">
 
-                            <label class="label-inp"for="count">Cantidad: </label>
-                            <input class= "inp-style" type="number" min="0" max="1000" name="count3" id="count">
+                            <div>
+                                <label class="label-inp"for="count">Cantidad: </label>
+                                <input class= "inp-style" type="number" min="0" max="1000" name="count4" id="count">
+                            </div>
                         </div>
                         <div class="wrap-form">
-                            <label class="label-inp"for="description">Descripción de producto: </label>
-                            <input class= "inp-style" type="text" name="description3" id="description">
+                            <div>
+                                <label class="label-inp"for="description">Descripción de producto: </label>
+                                <input class= "inp-style" type="text" name="description4" id="description">
+                            </div>
                         </div>
                             
-                        <div class="wrap-form">
-                            <label class="label-inp"for="price">Precio: </label>
-                            <input class= "inp-style" type="number" min="0" max="10000" name="price3" id="price">
+                        <div class="wrap-form price-pay">
+                            <div>
+                                <label class="label-inp"for="price">Precio: </label>
+                                <input class= "inp-style" type="number" min="0" max="10000" name="price4" id="price">
+                            </div>
+                            <div>
+                                <label class="label-inp"for="pay">Fiado: </label>
+                                <input class= "inp-style" type="checkbox" name="pay4" id="pay-check4" value="">
+                            </div>
                         </div>
                     </div>
                     <div class="cont-2">
 
                         <div class="wrap-form">
 
-                            <label class="label-inp"for="count">Cantidad: </label>
-                            <input class= "inp-style" type="number" min="0" max="1000" name="count4" id="count">
+                            <div>
+                                <label class="label-inp"for="count">Cantidad: </label>
+                                <input class= "inp-style" type="number" min="0" max="1000" name="count5" id="count">
+                            </div>
                         </div>
                         <div class="wrap-form">
-                            <label class="label-inp"for="description">Descripción de producto: </label>
-                            <input class= "inp-style" type="text" name="description4" id="description">
+                            <div>
+                                <label class="label-inp"for="description">Descripción de producto: </label>
+                                <input class= "inp-style" type="text" name="description5" id="description">
+                            </div>
                         </div>
                             
-                        <div class="wrap-form">
-                            <label class="label-inp"for="price">Precio: </label>
-                            <input class= "inp-style" type="number" min="0" max="10000" name="price4" id="price">
+                        <div class="wrap-form price-pay">
+                            <div>
+                                <label class="label-inp"for="price">Precio: </label>
+                                <input class= "inp-style" type="number" min="0" max="10000" name="price5" id="price">
+                            </div>
+                            <div>
+                                <label class="label-inp"for="pay">Fiado: </label>
+                                <input class= "inp-style" type="checkbox" name="pay5" id="pay-check5" value="">
+                            </div>
                         </div>
                     </div>
                     <div class="cont-2">
 
                         <div class="wrap-form">
 
-                            <label class="label-inp"for="count">Cantidad: </label>
-                            <input class= "inp-style" type="number" min="0" max="1000" name="count5" id="count">
+                            <div>
+                                <label class="label-inp"for="count">Cantidad: </label>
+                                <input class= "inp-style" type="number" min="0" max="1000" name="count6" id="count">
+                            </div>
                         </div>
                         <div class="wrap-form">
-                            <label class="label-inp"for="description">Descripción de producto: </label>
-                            <input class= "inp-style" type="text" name="description5" id="description">
+                            <div>
+                                <label class="label-inp"for="description">Descripción de producto: </label>
+                                <input class= "inp-style" type="text" name="description6" id="description">
+                            </div>
                         </div>
                             
-                        <div class="wrap-form">
-                            <label class="label-inp"for="price">Precio: </label>
-                            <input class= "inp-style" type="number" min="0" max="10000" name="price5" id="price">
+                        <div class="wrap-form price-pay">
+                            <div>
+                                <label class="label-inp"for="price">Precio: </label>
+                                <input class= "inp-style" type="number" min="0" max="10000" name="price6" id="price">
+                            </div>
+                            <div>
+                                <label class="label-inp"for="pay">Fiado: </label>
+                                <input class= "inp-style" type="checkbox" name="pay6" id="pay-check6" value="">
+                            </div>
                         </div>
                     </div>
                     <div class="cont-2">
 
                         <div class="wrap-form">
 
-                            <label class="label-inp"for="count">Cantidad: </label>
-                            <input class= "inp-style" type="number" min="0" max="1000" name="count6" id="count">
+                            <div>
+                                <label class="label-inp"for="count">Cantidad: </label>
+                                <input class= "inp-style" type="number" min="0" max="1000" name="count7" id="count">
+                            </div>
                         </div>
                         <div class="wrap-form">
-                            <label class="label-inp"for="description">Descripción de producto: </label>
-                            <input class= "inp-style" type="text" name="description6" id="description">
+                            <div>
+                                <label class="label-inp"for="description">Descripción de producto: </label>
+                                <input class= "inp-style" type="text" name="description7" id="description">
+                            </div>
                         </div>
                             
-                        <div class="wrap-form">
-                            <label class="label-inp"for="price">Precio: </label>
-                            <input class= "inp-style" type="number" min="0" max="10000" name="price6" id="price">
+                        <div class="wrap-form price-pay">
+                            <div>
+                                <label class="label-inp"for="price">Precio: </label>
+                                <input class= "inp-style" type="number" min="0" max="10000" name="price7" id="price">
+                            </div>
+                            <div>
+                                <label class="label-inp"for="pay">Fiado: </label>
+                                <input class= "inp-style" type="checkbox" name="pay7" id="pay-check7" value="">
+                            </div>
                         </div>
+                        
                     </div>
-                    <div class="cont-2">
 
-                        <div class="wrap-form">
-
-                            <label class="label-inp"for="count">Cantidad: </label>
-                            <input class= "inp-style" type="number" min="0" max="1000" name="count7" id="count">
-                        </div>
-                        <div class="wrap-form">
-                            <label class="label-inp"for="description">Descripción de producto: </label>
-                            <input class= "inp-style" type="text" name="description7" id="description">
-                        </div>
-                            
-                        <div class="wrap-form">
-                            <label class="label-inp"for="price">Precio: </label>
-                            <input class= "inp-style" type="number" min="0" max="10000" name="price7" id="price">
-                        </div>
-                    </div>
-                    
-                    <input type="submit" value="Enviar" class="env">
+                    <input type="submit" value="Enviar" class="env" id="check-env">
                 </form>
             </div>
         </div>

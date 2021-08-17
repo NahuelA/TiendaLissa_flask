@@ -54,20 +54,9 @@
     <main>
         <div class="wrapper">
 
-            <div class="plot"> </div>
-
-            <form action="{{url_for('buscar_venta_por_mes')}}" method="POST" class="form">
-
-                <div class="wrap-form">
-                    <label class="label-inp" for="person">Buscar por mes</label>
-                    <div class="search search-r-d">
-                        <img src="{{ url_for('static', filename='media/search-solid.svg') }}" alt="search-solid" id="search-solid">
-                        <input class= "inp-style" type="name" name="date" id="person" placeholder="Ingrese el mes que desea analizar" autocomplete="off">
-                    </div> 
-                </div>
-            </form>
             <!-- Imprimir en pantalla los registros de la persona ingresada -->
             <div class="records">
+                <h1 class="date_now">Hoy: {{date}}</h1>
                 <table>
                     <tr>
                         <td class="row">Fecha</td>
