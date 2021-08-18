@@ -67,6 +67,8 @@ def plot_to_canvas(fig):
 def ini():
     try:
 
+        # Activar al ejecutar por primera vez el programa
+        # Luego volverlo a comentar para evitar borrarse la db
         """ if os.path.isfile(db_config['database']) == False:
             # Sino existe la base de datos la creo
             tienda_lissa_venta.create_schema()

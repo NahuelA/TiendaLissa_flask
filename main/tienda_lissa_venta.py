@@ -13,11 +13,9 @@ __email__ = "nahuelarrascaeta22@gmail.com"
 __version__ = "1.0"
 
 #Librerías
-from datetime import date, datetime
-from re import MULTILINE
+from datetime import datetime
 import numpy as np
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import query_expression
 db = SQLAlchemy()
 
 
