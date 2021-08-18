@@ -96,15 +96,16 @@ __Palabras clave para las busquedas__
 
 ### Venta
 
-Muestra un formulario para registrar hasta 8 ventas
+Muestra un formulario para registrar hasta 8 ventas por vez
 
 **Las entradas del formulario son las siguientes**
 - Nombre
 - Cantidad
 - Descripción
 - Precio unitario
+- Fiado
 
-__Los nombres se guardan en lower_case y en el buscador de registros de inicio también se pasa el nombre ingresado a lower_case__
-<!-- Mostrar imagen de la interfaz de inicio -->
+<!-- Mostrar imagen de la interfaz de venta -->
+![venta_tienda_lissa_db](https://github.com/NahuelA/Proyecto_programador_py_inove/blob/main/main/static/media/venta.png)
 
 ### Compra
