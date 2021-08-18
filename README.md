@@ -101,11 +101,72 @@ Muestra un formulario para registrar hasta 8 ventas por vez
 **Las entradas del formulario son las siguientes**
 - Nombre
 - Cantidad
-- Descripción
+- Descripción del producto
 - Precio unitario
 - Fiado
 
 <!-- Mostrar imagen de la interfaz de venta -->
 ![venta_tienda_lissa_db](https://github.com/NahuelA/Proyecto_programador_py_inove/blob/main/main/static/media/venta.png)
 
+### Buscar venta por mes
+
+Al ingresar el mes deseado se imprimen las ventas registradas en esa fecha
+
+![buscar_venta_por_mes_tienda_lissa_db](https://github.com/NahuelA/Proyecto_programador_py_inove/blob/main/main/static/media/buscar_por_mes.png)
+
+### Resumen venta diario
+
+Muestra las ventas registradas durante el día
+
+![buscar_venta_por_mes_tienda_lissa_db](https://github.com/NahuelA/Proyecto_programador_py_inove/blob/main/main/static/media/resumen_diario.png)
+
 ### Compra
+
+Muestra un formulario para registrar hasta 8 compras por vez
+
+**Las entradas del formulario son las siguientes**
+- Nombre del proveedor
+- Cantidad
+- Descripción del producto
+- Precio unitario
+
+![compra_tienda_lissa_db](https://github.com/NahuelA/Proyecto_programador_py_inove/blob/main/main/static/media/compra.png)
+
+### Buscar compra por mes
+
+Al ingresar el mes deseado se imprimen las compras registradas en esa fecha
+
+![buscar_compra_por_mes_tienda_lissa_db](https://github.com/NahuelA/Proyecto_programador_py_inove/blob/main/main/static/media/buscar_compra_por_mes.png)
+
+### Buscar por proveedor
+
+En este endpoint podemos buscar por nombre a los registros de compra de la db
+
+![buscar_por_proveedor_tienda_lissa_db](https://github.com/NahuelA/Proyecto_programador_py_inove/blob/main/main/static/media/buscar_compra.png)
+
+### Fiado
+
+Aquí aparecerán todos los registros que fueron guardados con el checkbox de fiado marcado
+
+**Tiene la opción de pagado al marcar el checkbox**
+
+![fiado_tienda_lissa_db](https://github.com/NahuelA/Proyecto_programador_py_inove/blob/main/main/static/media/fiado.png)
+
+### Resumen
+
+Aquí aparece el resumen general de compra/venta
+
+![resumen_tienda_lissa_db](https://github.com/NahuelA/Proyecto_programador_py_inove/blob/main/main/static/media/grafico.png)
+
+## Actualizaciones
+
+Proximamente...
+
+## Versión
+
+**1.0**
+
+## Autor
+
+Nahuel_A
+**Correo:** nahuelarrascaeta22@gmail.com
