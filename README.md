@@ -4,12 +4,15 @@
 ![inove_logo](https://inove.com.ar/wp-content/uploads/2020/03/cropped-3-1.png)
 
 Sitio web para administrar las compras y ventas de una tienda de ropa y calzados.
-El propósito de este proyecto es Digitalizar los controles diarios de compra/venta de la tienda
+El propósito de este proyecto es digitalizar los controles diarios de compra/venta de tienda Lissa
 
 ## Características:
 
 - Facturero de compra/venta
 - Buscador de registros mediante el nombre
+- Buscador de registros mediante el mes
+- Resumen diario de ventas
+- Resumen de fiados
 - Gráfico que muestra un balance entre compra/venta
 - Reset de db
 
@@ -31,14 +34,16 @@ El propósito de este proyecto es Digitalizar los controles diarios de compra/ve
         - src
             - main.css
             - main.js
+            - fiado.js
     - templates
         - compra
             - compra.html
-            - buscar_compra_por_mes
-            - buscar_por_proveedor
+            - buscar_compra_por_mes.html
+            - buscar_por_proveedor.html
         - venta
             - venta.html
-            - buscar_venta_por_mes
+            - buscar_venta_por_mes.html
+            - resumen_venta_diario.html
         - fiado.html
         - index.html
     app.py
@@ -46,29 +51,30 @@ El propósito de este proyecto es Digitalizar los controles diarios de compra/ve
     config.py
     tienda_lissa_compra.py
     tienda_lissa_venta.py
+    Diagrama_tienda_lissa_db.drawio
 
-## Herramientas que se usaron:
+## Tecnologías que se usaron:
 
 - **Python 3.8.3**
 - **Flask 2.0.1**
 - **ORM sqlalchemy**
-- **HTML y CSS**
+- **HTML, CSS y JS**
 
 ## Guía de uso:
 
-El sitio consta de 9 endpoints
+Consta de 10 endpoints
+- /inicio
+- /venta
+    - /buscar_venta_por_mes
+    - /resumen_venta_diario
+- /compra
+    - /buscar_compra_por_mes
+    - /buscar_por_proveedor
+- /fiado
+- /resumen
+- /reset
 
-- (1) inicio
-- (2) venta
-    - (3) buscar por mes
-- (4) compra
-    - (5) buscar por mes
-    - (6) buscar por proveedor
-- (7) fiado
-- (8) resumen
-- (9) reset
-
-## Inicio
+### Inicio
 
 En este endpoint podemos buscar por nombre a los registros de venta de la db
 
@@ -80,14 +86,15 @@ En este endpoint podemos buscar por nombre a los registros de venta de la db
 - Descripción
 - Precio unitario
 - Precio total
-__La columna fecha, id y total se generan dinámicamente__
+- Fiado
 
 __Palabras clave para las busquedas__
-- /all: Muestra todos los registros de la db
+- /all: Muestra todos los registros de ventas de la db
 - name: Ingresar nombre de alguna persona registrada
 <!-- Mostrar imagen de la interfaz de inicio -->
+![inicio_tienda_lissa_db](C:\Users\boys net\Desktop\NahuelM\Web\InovePy\Programador_PY\Modulo7_inove\Tienda Lissa DB\main\static\media\inicio.png)
 
-## Venta
+### Venta
 
 Muestra un formulario para registrar hasta 8 ventas
 
@@ -100,4 +107,4 @@ Muestra un formulario para registrar hasta 8 ventas
 __Los nombres se guardan en lower_case y en el buscador de registros de inicio también se pasa el nombre ingresado a lower_case__
 <!-- Mostrar imagen de la interfaz de inicio -->
 
-## Compra
+### Compra
