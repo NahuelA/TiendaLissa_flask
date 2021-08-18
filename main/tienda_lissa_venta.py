@@ -130,21 +130,17 @@ def paid(id,paid:str):
     
     fiados = get_fiados()
     for fiado in range(len(fiados)):
-        # dict_ = {"date":fiado["date"],
-        #         "id":fiado["id"],
-        #         "name":fiado["name"],
-        #         "count":fiado["count"],
-        #         "description":fiado["description"],
-        #         "price":fiado["price"],
-        #         "total":fiado["total"],
-        #         "fiado":fiado["fiado"]
-        #         }
+        dict_ = {"name":fiados[fiado]["name"],
+                "count":fiados[fiado]["count"],
+                "description":fiados[fiado]["description"],
+                "price":fiados[fiado]["price"],
+                }
         if id == fiados[fiado]["id"] and paid == "pagado":
             query = db.session.query(tienda_lissa_venta).filter(tienda_lissa_venta.id == id)
             user_delete = query.first()
             # Eliminar registro de fiado porque ya está saldada su cuenta
             db.session.delete(user_delete)
-            # insert(dict_["name"], dict_["count"], dict_["description"], dict_["price"], paid)
+            insert(dict_["name"], dict_["count"], dict_["description"], dict_["price"], paid)
             db.session.commit()
     return None
         
