@@ -92,7 +92,7 @@ __Palabras clave para las busquedas__
 - /all: Muestra todos los registros de ventas de la db
 - name: Ingresar nombre de alguna persona registrada
 <!-- Mostrar imagen de la interfaz de inicio -->
-![inicio_tienda_lissa_db](C:\Users\boys net\Desktop\NahuelM\Web\InovePy\Programador_PY\Modulo7_inove\Tienda Lissa DB\main\static\media\inicio.png)
+![inicio_tienda_lissa_db](main\static\media\inicio.png)
 
 ### Venta
 
